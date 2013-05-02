@@ -1,6 +1,28 @@
 (function () {
     "use strict";
 
+	var module = (function () {
+	    // private variables and functions
+	    var foo = 'bar';
+
+	    // constructor
+	    var module = function () {
+	    };
+
+	    // prototype
+	    module.prototype = {
+	        constructor: module,
+	        something: function () {
+	        }
+	    };
+
+	    // return module
+	    return module;
+	})();
+	
+	var use_module = new module();
+	// type 2
+
     var widgetHandler,
     widget = {
 
