@@ -1,5 +1,6 @@
 (function(){
 	"use strict";
+
 	var functionUtils = (function(){
 	  //Private
 	  function _slice(arrayLike, index) {
@@ -17,4 +18,6 @@
 	  };
 	})();	
 })();
+
+
 
