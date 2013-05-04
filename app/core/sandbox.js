@@ -1,37 +1,55 @@
-/**
- * User: pizza
- * Date: 5/3/13
- * Time: 11:55 PM
- */
+"use strict";
 
-(function () {
-    "use strict";
+    var Sandbox =  {
+        create : function (core, module_selector) {
+            var CONTAINER = core.dom.query('#' + module_selector);
+            return {
+                find : function (selector) {
+                    return CONTAINER.query(selector);
+                },
+                addEvent : function (element, type, fn) {
+                    core.dom.bind(element, type, fn);
+                },
+                removeEvent : function (element, type, fn) {
+                    core.dom.unbind(element, type, fn);
+                },
+                notify : function (evt) {
+                    if (core.is_obj(evt) && evt.type) {
+                        core.triggerEvent(evt);
+                    }
+                },
+                listen : function (evts) {
+                    if (core.is_obj(evts)) {
+                        core.registerEvents(evts, module_selector);
+                    }
+                },
+                ignore : function (evts) {
+                    if (core.is_arr) {
+                        core.removeEvents(evts, module_selector);
+                    }
+                },
+                createElement : function (el, config) {
+                    var i, child, text;
+                    el = core.dom.create(el);
 
-    var sandbox = (function () {
-        create: function(core, moduleSelector) {
-            var CONTAINER  = core.dom.query("#" + moduleSelector); //looks or the module name which in turn looks for the id of the view.
-        }
-        //all methods that are used between sandbox and modules.
-        return{
-            query : function(selector) {
-                return CONTAINER.query(selector);
-            },
-            addEvent : function (scope, eventType, callback){
-                 core.dom.bind();
-            },
-            removeEvent : function (scope, eventType, callback){
-                core.dom.unbind();
-            },
-            notify : function() {
-                if(core.is_obj(event)){
-                    core.triggerEvent(event, moduleSelector);
+                    if (config) {
+                        if (config.children && core.is_arr(config.children)) {
+                            i = 0;
+                            while(child = config.children[i]) {
+                                el.appendChild(child);
+                                i++;
+                            }
+                            delete config.children;
+                        }
+                        if (config.text) {
+                            el.appendChild(document.createTextNode(config.text));
+                            delete config.text;
+                        }
+                        core.dom.apply_attrs(el, config);
+                    }
+                    return el;
                 }
-            },
-            listen : function() {
-                if(cor.is_arr)
-                 core.registerEvents(event, moduleSelector)
-            }
+            };
         }
-    }());
+    }
 
-}());
