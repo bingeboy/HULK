@@ -4,7 +4,11 @@
         create : function (core, module_selector) {
             var CONTAINER = core.dom.query('#' + module_selector);
             return {
+                //todo take out find since query is better name space
                 find : function (selector) {
+                    return CONTAINER.query(selector);
+                },
+                query : function (selector) {
                     return CONTAINER.query(selector);
                 },
                 addEvent : function (element, type, fn) {
@@ -15,6 +19,7 @@
                 },
                 notify : function (evt) {
                     if (core.is_obj(evt) && evt.type) {
+                        console.log("core.triggerEvent(evt)", core.triggerEvent(evt));
                         core.triggerEvent(evt);
                     }
                 },

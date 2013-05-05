@@ -27,3 +27,32 @@
 
 
 })();
+
+// Cherry picked from kernelJS
+
+if (e) {
+
+    eventData = {
+        type: type,
+        data: data,
+        time: new Date(),
+        listeners: listenerData,
+        broadcastCount: broadcastCount[type],
+        callbackCount: callbackCount[type],
+        elapseTime: elapseTime,
+        totalElapseTime: totalElapseTime[type],
+        all: {
+            broadcastCount: broadcastCount.event,
+            callbackCount: callbackCount.event,
+            totalElapseTime: totalElapseTime.event
+        }
+    };
+
+    for (i=0,size=e.length; i<size; i+=1) {
+        listeners.event[i].callback(eventData);
+    }
+}
+
+// Handle callback if provided
+if (callback) callback();
+};

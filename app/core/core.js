@@ -73,6 +73,7 @@ var Core = (function () {
             }
         },
         triggerEvent : function (evt) {
+            console.log("evt param value from core: ", evt);
             var mod;
             for (mod in moduleData) {
                 if (moduleData.hasOwnProperty(mod)){
@@ -101,6 +102,8 @@ var Core = (function () {
 
                 if (context && context.find) {
                     jqEls = context.find(selector);
+                }else if (context && context.query) {
+                    jqEls = context.query(selector);
                 } else {
                     jqEls = jQuery(selector);
                 }

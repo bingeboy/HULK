@@ -1,13 +1,13 @@
 (function () {
     "use strict";
-    Core.createModule("search-box", function(sandbox) {
+    Core.createModule("map-canvas", function(sandbox) {
         var input, button, reset;
 
         return {
             init : function () {
-                input = sandbox.find("#search_input")[0],
-                    button = sandbox.find("#search_button")[0],
-                    reset  = sandbox.find("#quit_search")[0];
+                input = sandbox.find("#mapSearchInput")[0],
+                    button = sandbox.find("#searchMapButton")[0],
+                    reset  = sandbox.find("#quitSearchMapButton")[0];
 
                 sandbox.addEvent(button, "click", this.handleSearch);
                 sandbox.addEvent(reset, "click", this.quitSearch);
