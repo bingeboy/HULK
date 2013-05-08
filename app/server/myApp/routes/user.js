@@ -3,6 +3,23 @@
  * GET users listing.
  */
 
+//exports.userTemplateObj = function(req, res){
+//    console.log("This is the req: ",req);//seen in node console.
+//    //calls jade view
+//    res.render('users', {
+//        title: 'Users',
+//        heroUnitTitle: 'Hulk, this is coming from index.js'
+//    });
+//};
+
 exports.list = function(req, res){
-  res.send("respond with a resource");
+    var message = {
+        title: "boobs"
+    }
+    res.send(message.title);
+};
+
+exports.userNew = function(req, res){
+    res.send("respond with userNew");
+
 };

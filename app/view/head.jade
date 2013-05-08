@@ -1,20 +1,51 @@
 /currently this is only html... TODO needs to be moved to server folder
-<!DOCTYPE html "❤">
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+!!!
+html(lang='en')
+//if lt IE 7
+      html.no-js.lt-ie9.lt-ie8.lt-ie7
 
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+include head
+    title HULK
+    /cdn
+    include ://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet
+    script(src='http://cdnjs.cloudflare.com/ajax/libs/headjs/0.99/head.min.js')
 
-    <!--CDN-->
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/headjs/0.99/head.min.js"></script>
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+    meta name="description" content=""
+    meta name="viewport" content="width=device-width"
 
-</head>
+    /TODO favcon modile bookmark etc.
+
+body
+
+
+
+
+
+// Sample Jade template:
+doctype 5
+
+    head
+        include header.jade
+        title= pageTitle
+        script(type='text/javascript')
+            -if (foo) {
+                bar();
+            }
+    body
+        h1 Jade - node template engine
+        #container
+//- and we could add some more:
+div#foo.bar.baz
+#foo
+.bar +
+p
+    | and some text here
+    | and even more;
+myns:mytag
+
+if foobar > zoo
+    p Yes
+else
+    p No
