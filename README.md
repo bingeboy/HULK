@@ -2,6 +2,8 @@
 
 <em>"PUNY HUMANS"</em>
 
+<img src="http://www.leaderslair.com/marveluniverse/marvelfanfare29pic1.gif" style="float:right;">
+
 <h2>Overview</h2>
 
 JavaScript Application Architecture based on "mediator" pattern.
