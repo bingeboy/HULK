@@ -19,7 +19,9 @@ exports.list = function(req, res){
     res.send(message.title);
 };
 
-exports.userNew = function(req, res){
-    res.send("respond with userNew");
+exports.new = function(req, res){
+    res.render('newUser', {
+        title: 'Users'
+    });
 
 };

@@ -50,12 +50,13 @@ app.get('/index', routes.index);
 
 //user pages
 app.get('/users', user.list);
-
-app.get("/users/new", function(req, res){
-    res.render("/users/new");
+app.get('/users/new', user.new);
+app.get('/users/:userID', function (req, res) {
+    res.send("respond with user id:",req.params.userID);
 });
 
 // get data from body of users/new
+// Not being used yet
 app.post('/users', function (req, res){
     var body = req.body;
 
@@ -64,7 +65,11 @@ app.post('/users', function (req, res){
         email: body.email,
         age: body.age
     })
-})
+        .save(function (err, user){
+                      if (err) res.json(err);
+                      res.redirect('/users/' + user.name)
+                  })
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
