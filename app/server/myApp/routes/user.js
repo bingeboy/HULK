@@ -3,15 +3,6 @@
  * GET users listing.
  */
 
-//exports.userTemplateObj = function(req, res){
-//    console.log("This is the req: ",req);//seen in node console.
-//    //calls jade view
-//    res.render('users', {
-//        title: 'Users',
-//        heroUnitTitle: 'Hulk, this is coming from index.js'
-//    });
-//};
-
 exports.list = function(req, res){
     var message = {
         title: "boobs"
@@ -19,9 +10,28 @@ exports.list = function(req, res){
     res.send(message.title);
 };
 
-exports.new = function(req, res){
-    res.render('newUser', {
-        title: 'Users'
+// users index
+exports.index = function(req, res){
+    Users.find({}, function(err, docs){
+        res.render('user/index', {
+            users: docs, //mongo data
+            title: "test on title from nested folder"
+        });
     });
 
+
+};
+
+//creates page for new users
+exports.new = function(req, res){
+    res.render('user/newUser', {
+        title: 'Users'
+    });
+};
+
+// users show
+exports.show = function(req, res){
+    res.render('users/show', {
+        title: 'Show'
+    });// { user: req.users });
 };

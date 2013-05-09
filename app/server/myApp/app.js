@@ -43,20 +43,36 @@ var UserSchema = new mongoose.Schema({
 //
 Users = mongoose.model('Users', UserSchema);
 
+//favicon
+app.use(express.favicon(__dirname + '/public/img/favicon.ico'));
 
 //index
 app.get('/', routes.index);
 app.get('/index', routes.index);
 
+
+
 //user pages
-app.get('/users', user.list);
+app.get('/users/', user.index);
+app.get('/users', user.index);
+
 app.get('/users/new', user.new);
-app.get('/users/:userID', function (req, res) {
-    res.send("respond with user id:",req.params.userID);
+//app.get('/users/:userID', function (req, res) {
+//    res.send("respond with user id:",req.params.userID);
+//});
+
+app.param("name", function (req, res, next, name){
+    Users.find({ name: name }, function ( err, docs ) {
+       req.user = docs;
+       next();
+    });
+});
+
+app.get('/users/:name', function (req, res){
+    res.render("users/show", { user: req.user });
 });
 
 // get data from body of users/new
-// Not being used yet
 app.post('/users', function (req, res){
     var body = req.body;
 
@@ -64,11 +80,10 @@ app.post('/users', function (req, res){
         name: body.name,
         email: body.email,
         age: body.age
-    })
-        .save(function (err, user){
-                      if (err) res.json(err);
-                      res.redirect('/users/' + user.name)
-                  })
+    }).save(function (err, user){
+          if (err) res.json(err);
+          res.redirect('/users/' + user.name)
+      });
 });
 
 http.createServer(app).listen(app.get('port'), function(){
