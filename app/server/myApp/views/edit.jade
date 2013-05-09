@@ -1,0 +1,13 @@
+block content
+
+    h1 New User
+
+    form(method="POST", action="/users/#{user.name}")
+        input(type="hidden", name="_method", value="PUT")
+        label Name
+        input#name(type="text", name="name", value="#{user.name}")
+        label Email
+        input#email(type="email", name="email", value="#{user.email}")
+        label Age
+        input#age(type="number", name="age", value="#{user.age}" )
+        button(type="submit") Create

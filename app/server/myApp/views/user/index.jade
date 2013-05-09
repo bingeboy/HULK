@@ -1,5 +1,8 @@
-h1=title
-ul
-    each user in users
-        li
-            a(href="/users/#{user.name}") #{user.name} (#{user.email}) and is #{user.age}
+extends ../layout
+
+block content
+    h1=title
+    ul
+        - each user in users
+            li
+                a(href="/users/#{user.name}") #{user.name} (#{user.email}) and is #{user.age}

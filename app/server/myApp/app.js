@@ -51,26 +51,29 @@ app.get('/', routes.index);
 app.get('/index', routes.index);
 
 
-
-//user pages
-app.get('/users/', user.index);
-app.get('/users', user.index);
-
-app.get('/users/new', user.new);
-//app.get('/users/:userID', function (req, res) {
-//    res.send("respond with user id:",req.params.userID);
-//});
-
 app.param("name", function (req, res, next, name){
     Users.find({ name: name }, function ( err, docs ) {
-       req.user = docs;
-       next();
+        req.user = docs[0]; //assumes there are no dups. (Without this line you can't get child nodes of obj
+        next();
     });
 });
 
-app.get('/users/:name', function (req, res){
-    res.render("users/show", { user: req.user });
-});
+
+//Index Users
+app.get('/users/', user.index);
+app.get('/users', user.index);
+
+//Create User
+app.get('/users/new', user.new);
+
+//Display User
+app.get('/users/:name', user.profile);
+
+//Edit User
+app.get('/users/:name/edit', user.edit);
+
+//Update User
+app.put("/users/:name", user.updateRequest);
 
 // get data from body of users/new
 app.post('/users', function (req, res){
@@ -85,6 +88,7 @@ app.post('/users', function (req, res){
           res.redirect('/users/' + user.name)
       });
 });
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

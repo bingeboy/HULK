@@ -27,46 +27,49 @@ body
                         a(href='#mobile') Mobile
                     li
                         a(href='#accessory') Accessory
-        .hero-unit
-            h1=heroUnitTitle
-            p The JavaScript Framework
-            p
-                a.btn.btn-primary.btn-large
-                    | Learn more
-        #product-panel
-            ul
-                li#1(data-8088-keyword='red')
-                    img(src='img/1.jpg')
-                    p First Item
-                li#2(data-8088-keyword='blue')
-                    img(src='img/2.jpg')
-                    p Second Item
-                li#3(data-8088-keyword='mobile')
-                    img(src='img/3.jpg')
-                    p Third Item
-                li#4(data-8088-keyword='accessory')
-                    img(src='img/4.jpg')
-                    p Fourth Item
-                li#5(data-8088-keyword='red mobile')
-                    img(src='img/5.jpg')
-                    p Fifth Item
-                li#6(data-8088-keyword='blue mobile')
-                    img(src='img/6.jpg')
-                    p Sixth Item
-                li#7(data-8088-keyword='red accessory')
-                    img(src='img/7.jpg')
-                    p Seventh Item
-                li#8(data-8088-keyword='blue accessory')
-                    img(src='img/8.jpg')
-                    p Eighth Item
-                li#9(data-8088-keyword='red blue')
-                    img(src='img/9.jpg')
-                    p Ninth Item
-                li#10(data-8088-keyword='mobile accessory')
-                    img(src='img/10.jpg')
-                    p Tenth Item
-        #shopping-cart
-            ul
+                    li
+                        a(href='users/new') Accessory
+        block content
+            .hero-unit
+                h1=heroUnitTitle
+                p The JavaScript Framework
+                p
+                    a.btn.btn-primary.btn-large
+                        | Learn more
+            #product-panel
+                ul
+                    li#1(data-8088-keyword='red')
+                        img(src='img/1.jpg')
+                        p First Item
+                    li#2(data-8088-keyword='blue')
+                        img(src='img/2.jpg')
+                        p Second Item
+                    li#3(data-8088-keyword='mobile')
+                        img(src='img/3.jpg')
+                        p Third Item
+                    li#4(data-8088-keyword='accessory')
+                        img(src='img/4.jpg')
+                        p Fourth Item
+                    li#5(data-8088-keyword='red mobile')
+                        img(src='img/5.jpg')
+                        p Fifth Item
+                    li#6(data-8088-keyword='blue mobile')
+                        img(src='img/6.jpg')
+                        p Sixth Item
+                    li#7(data-8088-keyword='red accessory')
+                        img(src='img/7.jpg')
+                        p Seventh Item
+                    li#8(data-8088-keyword='blue accessory')
+                        img(src='img/8.jpg')
+                        p Eighth Item
+                    li#9(data-8088-keyword='red blue')
+                        img(src='img/9.jpg')
+                        p Ninth Item
+                    li#10(data-8088-keyword='mobile accessory')
+                        img(src='img/10.jpg')
+                        p Tenth Item
+            #shopping-cart
+                ul
     div
         footer
     script(type='text/javascript')

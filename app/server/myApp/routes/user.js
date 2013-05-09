@@ -5,7 +5,7 @@
 
 exports.list = function(req, res){
     var message = {
-        title: "boobs"
+        title: " "
     }
     res.send(message.title);
 };
@@ -35,3 +35,21 @@ exports.show = function(req, res){
         title: 'Show'
     });// { user: req.users });
 };
+
+exports.edit = function (req, res) {
+    res.render("edit", { user: req.user });
+};
+
+exports.profile = function (req, res) {
+    res.render("profile", { user: req.user });
+};
+
+exports.updateRequest = function (req, res) {
+    var b = req.body;
+    Users.update(
+        {name: req.params.name},
+        {name: b.name, age: b.age, email: b.email},
+        function (err) {
+            res.redirect("users" + b.name);
+        });
+}
