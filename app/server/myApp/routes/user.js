@@ -37,11 +37,23 @@ exports.show = function(req, res){
 };
 
 exports.edit = function (req, res) {
-    res.render("edit", { user: req.user });
+    res.render("user/edit", { user: req.user });
 };
 
 exports.profile = function (req, res) {
-    res.render("profile", { user: req.user });
+    res.render("user/profile", { user: req.user });
+};
+exports.createAndSave = function (req, res ) {
+    var body = req.body;
+    //create and then save the user to mongodb
+    new Users({
+          name: body.name,
+          email: body.email,
+          age: body.age
+      }).save(function (err, user){
+          if (err) res.json(err);
+          res.redirect('/users/' + user.name)
+      });
 };
 
 exports.updateRequest = function (req, res) {
@@ -54,8 +66,8 @@ exports.updateRequest = function (req, res) {
         });
 };
 
-//exports.destroyUser = function (req, res) {
-//    Users.remove({ name: req.params.name}, function (err){
-//        res.redirect("/users/");
-//    });
-//};
+exports.destroyUser = function (req, res) {
+    Users.remove({ name: req.params.name}, function (err){
+        res.redirect("/users/");
+    });
+};

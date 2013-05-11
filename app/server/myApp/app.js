@@ -50,51 +50,33 @@ app.use(express.favicon(__dirname + '/public/img/favicon.ico'));
 app.get('/', routes.index);
 app.get('/index', routes.index);
 
-
+//checks if  :name is in db
 app.param("name", function (req, res, next, name){
     Users.find({ name: name }, function ( err, docs ) {
-        req.user = docs[0]; //assumes there are no dups. (Without this line you can't get child nodes of obj
+        req.user = docs[0];
         next();
     });
 });
 
+/*
+ Users Section
+ */
 
 //Index Users
 app.get('/users/', user.index);
 app.get('/users', user.index);
-
 //Create User
 app.get('/users/new', user.new);
-
 //Display User
 app.get('/users/:name', user.profile);
-
 //Edit User
 app.get('/users/:name/edit', user.edit);
-
 //Update User
 app.put("/users/:name", user.updateRequest);
-
 //Destroy
-app.delete("/users/:name", function( req, res){
-    Users.remove({ name: req.params.name}, function (err){
-        res.redirect("/users/");
-    });
-});
-
+app.delete("/users/:name", user.destroyUser);
 // get data from body of users/new
-app.post('/users', function (req, res){
-    var body = req.body;
-
-    new Users({
-        name: body.name,
-        email: body.email,
-        age: body.age
-    }).save(function (err, user){
-          if (err) res.json(err);
-          res.redirect('/users/' + user.name)
-      });
-});
+app.post('/users', user.createAndSave);
 
 
 http.createServer(app).listen(app.get('port'), function(){
