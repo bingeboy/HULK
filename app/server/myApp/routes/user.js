@@ -49,7 +49,13 @@ exports.updateRequest = function (req, res) {
     Users.update(
         {name: req.params.name},
         {name: b.name, age: b.age, email: b.email},
-        function (err) {
-            res.redirect("users" + b.name);
+        function (err) { //TODO this is sort of a hack since it triggers err every time but its working for now.
+            res.redirect("users/" + b.name);
         });
-}
+};
+
+//exports.destroyUser = function (req, res) {
+//    Users.remove({ name: req.params.name}, function (err){
+//        res.redirect("/users/");
+//    });
+//};

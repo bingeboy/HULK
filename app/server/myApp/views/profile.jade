@@ -6,3 +6,7 @@ block content
 
     p
         a(href="/users/#{user.name}/edit") Edit Profile
+    p
+        form(action="/users/#{user.name}", method="POST")
+            input(type="hidden", name="_method", value="DELETE")
+            button(type="submit") Delete

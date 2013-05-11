@@ -75,6 +75,13 @@ app.get('/users/:name/edit', user.edit);
 //Update User
 app.put("/users/:name", user.updateRequest);
 
+//Destroy
+app.delete("/users/:name", function( req, res){
+    Users.remove({ name: req.params.name}, function (err){
+        res.redirect("/users/");
+    });
+});
+
 // get data from body of users/new
 app.post('/users', function (req, res){
     var body = req.body;
