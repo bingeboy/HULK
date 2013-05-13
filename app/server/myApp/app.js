@@ -1,35 +1,53 @@
 
-/**
- * Module dependencies.
- */
-
-var express = require('express'),
-    mongoose = require('mongoose'),
-    routes = require('./routes'),
-    user = require('./routes/user'),
-    http = require('http'),
-    path = require('path');
+/*
+* Module dependencies.
+*/
+var express    = require('express')
+    , mongoose = require('mongoose')
+    , routes   = require('./routes')
+    , user     = require('./routes/user')
+    , common    = require('./routes/common')
+    , formidable = require ('formidable')
+    , fs       = require('fs')
+    , http     = require('http')
+    , util     = require('util')
+    , path     = require('path');
 
 var app = express();
 
-// all environments
-app.set('port', process.env.PORT || 3000);
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
-app.use(express.favicon());
-app.use(express.logger('dev'));
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(express.cookieParser('your secret here'));
-app.use(express.session());
-app.use(app.router);
-app.use(require('less-middleware')({ src: __dirname + '/public' }));
-app.use(express.static(path.join(__dirname, 'public')));
+
+/*
+ * connect middleware
+ */
+app.configure(function() {
+    app.set('port', process.env.PORT || 3000);
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'jade');
+    app.use(express.favicon());
+    app.use(express.logger('dev'));
+   // app.use(express.bodyParser());     TODO this is needed for users but breaks the upload tool.
+    app.use(express.json())
+        .use(express.urlencoded())
+    app.use(express.methodOverride());
+    app.use(express.cookieParser('your secret here'));
+    app.use(express.session());
+    app.use(app.router);
+    app.use(require('less-middleware')({ src: __dirname + '/public' }));
+    //app.use(express.static(path.join(__dirname, '/public')));
+    app.use(express.errorHandler());
+    app.use(express.static(__dirname + '/static'));
+});
+
 
 // development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
+ //if ('development' == app.get('env')) {
+//  app.use(express.errorHandler());
+//}
+
+
+/*
+ * Database
+ */
 
 //db connect
 mongoose.connect('mongodb://localhost/helloExpress');
@@ -39,12 +57,16 @@ var UserSchema = new mongoose.Schema({
      name: String,
      email: String,
      age: Number
- });
+});
 //
 Users = mongoose.model('Users', UserSchema);
 
 //favicon
-app.use(express.favicon(__dirname + '/public/img/favicon.ico'));
+//app.use(express.favicon(__dirname + '/public/img/favicon.ico'));
+
+/*
+ * Index Page
+ */
 
 //index
 app.get('/', routes.index);
@@ -59,8 +81,8 @@ app.param("name", function (req, res, next, name){
 });
 
 /*
- Users Section
- */
+* Users Section
+*/
 
 //Index Users
 app.get('/users/', user.index);
@@ -79,6 +101,10 @@ app.delete("/users/:name", user.destroyUser);
 app.post('/users', user.createAndSave);
 
 
+//File upload
+app.get('/upload', common.imageForm);
+app.post('/upload', common.uploadImage);
+
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });

@@ -6,6 +6,6 @@
     "dependencies": {
         "express": "*",
         "mongoose": "*",
-		"request": "*"	
+	"formidable": "*"
     }
 }
