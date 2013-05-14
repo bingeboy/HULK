@@ -1,4 +1,3 @@
-
 /*
 * Module dependencies.
 */
@@ -56,7 +55,8 @@ mongoose.connect('mongodb://localhost/helloExpress');
 var UserSchema = new mongoose.Schema({
      name: String,
      email: String,
-     age: Number
+     age: Number,
+     profileImage: String
 });
 //
 Users = mongoose.model('Users', UserSchema);
