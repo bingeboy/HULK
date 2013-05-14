@@ -6,7 +6,7 @@
 
 <h2>Overview</h2>
 
-JavaScript Application Architecture based on "mediator" pattern.
+JavaScript Application Architecture based on "mediator" pattern. Backend is running on MongoDB and Node.
 
 <h4>Backend</h4>
 
@@ -26,11 +26,13 @@ JavaScript Application Architecture based on "mediator" pattern.
 	<li>UI Widgets from Bootstrap
 </uL>
 
-<h3>JavaScript Code Based on</h3>
+<h3>Clientside JavaScript Code Based on</h3>
 Concepts from Nicholas C. Zakas's, <a href="https://twitter.com/slicknet">@slicknet</a> presentation on "Scalable JavaScript Application Architecture".
 <a href="http://youtu.be/mKouqShWI4o">Watch Presentation</a>
 
-Syntax originally from Tutsplus.com 
+Syntax of client side framework originally taken from Tutsplus.com examples and modified. 
+
+
 
 <!-- API modules to consider making:
 twitter
