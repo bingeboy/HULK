@@ -1,4 +1,4 @@
-<h1>HULK</h1>
+<h1>HULK JS</h1>
 
 <em>"PUNY HUMANS"</em>
 
@@ -11,9 +11,10 @@ JavaScript Application Architecture based on "mediator" pattern.
 <h4>Backend</h4>
 
 <ul>
-	<li>NodeJS + Express
+	<li>MongoDB
+	<li>NodeJS + Express + Other NPMs see package.json for running list.
 	<li>Templates w/Jade
-	<li>LESS
+	<li>LESS for CSS on top of Bootstrap
 </ul>
 
 <h4>Client</h4>
@@ -41,18 +42,35 @@ Base > Core > Sandbox > Module
 
 TODO List
 <pre>
-//TODO Select JS templating service and create grunt build file.
 //TODO Create a client data-attr service for hiding and show DOM elements. Refer to events.js for this.
 //TODO create settings to flag dev, prod, etc
 //TODO App core should handle all errors.
 </pre>
 
-<!-- API modules to consider making:
-twitter
-gmaps
-dropbox -->
 
 
 <h2>Documentation</h2>
 <h3>Making Modules</h3>
 Modules never speak to other directly modules, routing though sandbox required.
+
+<h3>MongoDB</h3>
+MongoDB is being used with Mongoose. See app.js for connction script and DB schema.
+
+<h4>Methods Workgin with DB</h4>
+See "user" section of myApp. 
+<ul>
+<li>POST
+<li>GET
+<li>PUT
+<li>DELETE
+</ul>
+
+Methods are all working.
+
+<h4>Muliti Image Uploader</h4>
+Mulit image uploader is working and optionally keeping original uploaded file name.
+See /upload on running instance to view. All code for this section is in app.js and/or common folder in routes.
+
+
+
+
