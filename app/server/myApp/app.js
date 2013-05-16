@@ -31,9 +31,8 @@ app.configure(function() {
     app.use(app.router);
     app.use(require('less-middleware')({ src: __dirname + '/public' }));
     app.use(express.static(path.join(__dirname, '/public')));
-    app.use(express.errorHandler());
     app.use(express.static(__dirname + '/static'));
-
+    app.use(express.errorHandler());
 });
 
 
