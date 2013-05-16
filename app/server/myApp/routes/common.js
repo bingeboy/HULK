@@ -1,4 +1,4 @@
-var formidable = require ('formidable');
+var util = require('util');
 
 exports.imageForm = function(req, res) {
     res.render('upload', {
@@ -6,33 +6,13 @@ exports.imageForm = function(req, res) {
     });
 };
 
-exports.uploadImage = function(req, res){
-    var form = new formidable.IncomingForm({ uploadDir: __dirname + '' })
-        , files = []
-        , fields = [];
-    form.keepExtensions = true;
-
-    form.on('field', function(field, value) {
-        fields.push([field, value]);
-    })
-    .on ('fileBegin', function(name, file){
-        //rename the incoming file to the file's name
-        file.path = form.uploadDir + "/" + file.name;
-    })
-    .on('file', function(field, file) {
-            console.log('file: ', file.name);
-            files.push([field, file]);
-    })
-    .on('progress', function(bytesReceived, bytesExpected) {
-        var percent = (bytesReceived / bytesExpected * 100) | 0;
-        process.stdout.write('Uploading: %' + percent + '\r');
-    })
-    .on('end', function() {
-            console.log('done');
-            res.redirect('upload');
-    });
-
-    form.parse(req, function() {
-        res.render('upload');
-    });
+exports.uploadImage = function(req, res, next){
+        console.log('file info: ',req.files.image);
+        res.send(util.format('\n uploaded %s (%d Kb) to %s as %s'
+            , req.files.image.name
+            , req.files.image.size / 1024 | 0
+            , req.files.image.path
+            , req.body.title
+            , req.files.image
+        ))
 };

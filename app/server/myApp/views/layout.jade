@@ -8,7 +8,8 @@ head
     meta(name='viewport', content='width=device-width')
 
     link(href='http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css', rel='stylesheet')
-    link(href='../css/hulk.css', rel='stylesheet')
+    link(href='/stylesheets/style.css', rel='stylesheet')
+
     script(src='http://cdnjs.cloudflare.com/ajax/libs/headjs/0.99/head.min.js')
 body
     #main.container
@@ -29,6 +30,9 @@ body
                         a(href='#accessory') Accessory
                     li
                         a(href='/users/new') Create User
+                    li
+                        a(href='/users/') Users
+
         block content
             .hero-unit
                 h1=heroUnitTitle
@@ -71,7 +75,7 @@ body
             #shopping-cart
                 ul
     div
-        footer footer content goes here
+        footer.footer footer content goes here
     script(type='text/javascript')
         head.js("https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
         .js("http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js")

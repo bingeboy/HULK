@@ -15,7 +15,7 @@ exports.index = function(req, res){
     Users.find({}, function(err, docs){
         res.render('user/index', {
             users: docs, //mongo data
-            title: "test on title from nested folder"
+            title: "User List"
         });
     });
 
@@ -25,7 +25,7 @@ exports.index = function(req, res){
 //creates page for new users
 exports.new = function(req, res){
     res.render('user/newUser', {
-        title: 'Users'
+        title: 'Create a New user'
     });
 };
 

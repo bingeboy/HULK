@@ -1,3 +1,5 @@
+extends ../layout
+
 block content
 
     h1 name: #{user.name}
@@ -6,6 +8,8 @@ block content
 
     p
         a(href="/users/#{user.name}/edit") Edit Profile
+    p
+        a(href="/upload") Upload Photo
     p
         form(action="/users/#{user.name}", method="POST")
             input(type="hidden", name="_method", value="DELETE")

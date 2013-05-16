@@ -24,17 +24,16 @@ app.configure(function() {
     app.set('view engine', 'jade');
     app.use(express.favicon());
     app.use(express.logger('dev'));
-   // app.use(express.bodyParser());     TODO this is needed for users but breaks the upload tool.
-    app.use(express.json())
-        .use(express.urlencoded())
+    app.use(express.bodyParser({ keepExtensions: true, uploadDir: __dirname + '/public/uploads' }));
     app.use(express.methodOverride());
     app.use(express.cookieParser('your secret here'));
     app.use(express.session());
     app.use(app.router);
     app.use(require('less-middleware')({ src: __dirname + '/public' }));
-    //app.use(express.static(path.join(__dirname, '/public')));
+    app.use(express.static(path.join(__dirname, '/public')));
     app.use(express.errorHandler());
     app.use(express.static(__dirname + '/static'));
+
 });
 
 
@@ -104,6 +103,7 @@ app.post('/users', user.createAndSave);
 //File upload
 app.get('/upload', common.imageForm);
 app.post('/upload', common.uploadImage);
+
 
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
