@@ -1,4 +1,3 @@
-
 /*
  * GET users listing.
  */
@@ -56,15 +55,28 @@ exports.createAndSave = function (req, res ) {
       });
 };
 
+/*
 exports.updateRequest = function (req, res) {
     var b = req.body;
     Users.update(
         {name: req.params.name},
         {name: b.name, age: b.age, email: b.email},
-        function (err) { //TODO this is sort of a hack since it triggers err every time but its working for now.
+        function (err) { 
             res.redirect("users/" + b.name);
         });
 };
+*/
+//take 2 on above:
+exports.updateRequest = function (req, res) {
+    var b = req.body;
+    Users.update(
+        {name: req.params.name},
+        {name: b.name, age: b.age, email: b.email},
+        function (err, doc) { //added callback 
+            res.redirect("users/" + b.name);
+        });
+};
+
 
 exports.destroyUser = function (req, res) {
     Users.remove({ name: req.params.name}, function (err){
